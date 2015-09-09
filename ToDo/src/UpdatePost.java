@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import customTools.DBUtil;
 
@@ -35,6 +36,8 @@ public class UpdatePost extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		String strdate = request.getParameter("duedate");
 		Date duedate = null;
+		HttpSession session = request.getSession();
+		Tuser user = (Tuser) session.getAttribute("user");
 		try {
 			duedate = formatter.parse(strdate);
 		} catch (ParseException e) {
@@ -45,6 +48,8 @@ public class UpdatePost extends HttpServlet {
 		list.setDuedate(duedate);
 		list.setStatus(request.getParameter("status"));
 		list.setTpriority(Integer.parseInt(request.getParameter("priority")));
+		list.setTuser(user);
+		list.setTid(Long.parseLong(request.getParameter("postID")));
 		DBUtil.update(list);
 		
 		getServletContext().getRequestDispatcher("/SeeList").forward(request, response);
