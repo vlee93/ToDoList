@@ -95,6 +95,21 @@ Persistence.createEntityManagerFactory("ToDo");
 		} 
 		}
 		
+		public static void delete(Todo post) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin(); 
+		try {
+		em.remove(em.merge(post));
+		trans.commit();
+		} catch (Exception e) {
+		System.out.println(e);
+		trans.rollback();
+		} finally {
+		em.close();
+		} 
+		}
+		
 		public static long isValidUser(Tuser user)
 		{
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();

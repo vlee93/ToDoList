@@ -42,7 +42,7 @@ public class SeeList extends HttpServlet {
 			List<Todo> posts = DBUtil.postTodoofUser(u);
 			for (Todo topost : posts)
 			{
-				message += "<div class=\"alert alert-success\"><a href=\"List.jsp\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>"
+				message += "<div class=\"alert alert-success\"><a href=\"Delete?postID="+ topost.getTid() + "\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a><strong>"
 						+ topost.getTitle() +"<br></strong>"
 						+ "Description: " + topost.getDescription() + "<br>"
 						+ "Priority: " + topost.getTpriority() + "<br>"
