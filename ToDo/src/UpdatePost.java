@@ -49,7 +49,7 @@ public class UpdatePost extends HttpServlet {
 		list.setStatus(request.getParameter("status"));
 		list.setTpriority(Integer.parseInt(request.getParameter("priority")));
 		list.setTuser(user);
-		list.setTid(Long.parseLong(request.getParameter("postID")));
+		list.setTid(Long.parseLong(request.getParameter("postid")));
 		DBUtil.update(list);
 		
 		getServletContext().getRequestDispatcher("/SeeList").forward(request, response);
