@@ -128,10 +128,11 @@ Persistence.createEntityManagerFactory("ToDo");
 				else
 				{
 					return 0;
+					
 				}
 				
 			}catch (Exception e){
-				
+				e.printStackTrace();
 				return 0;
 			}
 			finally{
